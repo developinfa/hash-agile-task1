@@ -1,0 +1,43 @@
+#include <stdio.h>
+int Major(int arr[], int s) {
+ int can = 0, ct= 0;
+ for (int i = 0; i < s; i++) {
+ if (ct== 0) {
+ can = arr[i];
+ ct = 1;
+ } else if (arr[i] == can) {
+ ct++;
+ } else {
+ ct--;
+ }
+ }
+ ct= 0;
+ for (int i = 0; i < s; i++) {
+ if (arr[i] == can) {
+ ct++;
+ }
+ }
+ if (ct > s / 2) {
+ return can;
+ } else {
+ return -1; 
+ }
+}
+int main() {
+ int s;
+ 
+ scanf("%d", &s);
+ int arr[s]; 
+ 
+ for (int i = 0; i < s; i++) {
+ scanf("%d", &arr[i]);
+ }
+ int out = Major(arr, s);
+ if (out != -1) {
+ printf("%d\n", out);
+ }
+ else {
+ printf("There is no majority element.\n");
+ }
+ return 0;
+}
